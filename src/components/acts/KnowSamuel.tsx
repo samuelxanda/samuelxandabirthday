@@ -1,13 +1,24 @@
 "use client";
 
-import {
-  FadeContent,
-  ScrollReveal,
-  TrueFocus,
-} from "@/components/react-bits";
+import { FadeContent, ScrollReveal, TrueFocus } from "@/components/react-bits";
 import { SITE, STORY_BEATS, STORY_FOCUS } from "@/lib/config";
 
+function groupBeats(beats: typeof STORY_BEATS) {
+  const groups: { kind: string; items: (typeof STORY_BEATS)[number][] }[] = [];
+  for (const beat of beats) {
+    const last = groups[groups.length - 1];
+    if (last && last.kind === beat.kind) {
+      last.items.push(beat);
+    } else {
+      groups.push({ kind: beat.kind, items: [beat] });
+    }
+  }
+  return groups;
+}
+
 export function KnowSamuel() {
+  const groups = groupBeats(STORY_BEATS);
+
   return (
     <section className="act act-know" aria-labelledby="know-heading">
       <FadeContent>
@@ -21,22 +32,25 @@ export function KnowSamuel() {
         </p>
       </FadeContent>
 
-      <div className="story-beats">
-        {STORY_BEATS.map((beat) => (
-          <ScrollReveal key={beat.id} containerClassName="story-beat">
-            <p className="story-beat-kind">{beat.kind}</p>
-            <p className="story-beat-text">{beat.text}</p>
-          </ScrollReveal>
+      <div className="story-groups">
+        {groups.map((group) => (
+          <section key={group.kind} className="story-group" aria-label={group.kind}>
+            <ScrollReveal containerClassName="story-group-reveal">
+              <p className="story-beat-kind">{group.kind}</p>
+              <ul className="story-group-list">
+                {group.items.map((beat) => (
+                  <li key={beat.id} className="story-beat-text">
+                    {beat.text}
+                  </li>
+                ))}
+              </ul>
+            </ScrollReveal>
+          </section>
         ))}
       </div>
 
       <FadeContent className="know-focus-wrap" delay={0.1}>
-        <TrueFocus
-          sentence={STORY_FOCUS}
-          className="know-focus"
-          blurAmount={2}
-          pauseBetween={1100}
-        />
+        <TrueFocus sentence={STORY_FOCUS} className="know-focus" pauseBetween={1400} />
         <p className="know-closer">
           Now leave {SITE.name} something only he will read.
         </p>

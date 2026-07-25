@@ -30,24 +30,21 @@ export default function ScrollReveal({
 
       const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-      // Once (not scrub) so text never gets stuck mid-blur while scrolling.
+      // Fade + rise only — blur made story lines hard to read mid-scroll.
       gsap.fromTo(
         ref.current,
         {
           opacity: 0,
-          y: isMobile ? 18 : 28,
-          filter: isMobile ? "none" : "blur(8px)",
+          y: isMobile ? 16 : 22,
         },
         {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: isMobile ? 0.45 : 0.7,
+          duration: isMobile ? 0.4 : 0.55,
           ease: "power2.out",
-          clearProps: "filter",
           scrollTrigger: {
             trigger: ref.current,
-            start: isMobile ? "top 92%" : "top 85%",
+            start: isMobile ? "top 94%" : "top 88%",
             once: true,
             toggleActions: "play none none none",
           },

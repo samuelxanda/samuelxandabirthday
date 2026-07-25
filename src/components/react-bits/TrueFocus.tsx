@@ -5,37 +5,30 @@ import { useEffect, useState } from "react";
 type TrueFocusProps = {
   sentence: string;
   className?: string;
-  blurAmount?: number;
   animationDuration?: number;
   pauseBetween?: number;
 };
 
+/**
+ * Cycles a soft highlight across words. All words stay fully readable —
+ * no blur, no heavy fade (those made this section hard to scan).
+ */
 export default function TrueFocus({
   sentence,
   className = "",
-  blurAmount = 5,
-  animationDuration = 0.45,
-  pauseBetween = 1200,
+  animationDuration = 0.4,
+  pauseBetween = 1400,
 }: TrueFocusProps) {
   const words = sentence.split(" ");
   const [active, setActive] = useState(0);
   const [reduced, setReduced] = useState(false);
-  const [softMode, setSoftMode] = useState(false);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobile = window.matchMedia("(max-width: 768px)");
-    const sync = () => {
-      setReduced(reduce.matches);
-      setSoftMode(mobile.matches);
-    };
+    const sync = () => setReduced(reduce.matches);
     sync();
     reduce.addEventListener("change", sync);
-    mobile.addEventListener("change", sync);
-    return () => {
-      reduce.removeEventListener("change", sync);
-      mobile.removeEventListener("change", sync);
-    };
+    return () => reduce.removeEventListener("change", sync);
   }, []);
 
   useEffect(() => {
@@ -46,22 +39,16 @@ export default function TrueFocus({
     return () => window.clearInterval(id);
   }, [pauseBetween, reduced, words.length]);
 
-  const effectiveBlur = softMode ? 0 : blurAmount;
-
   return (
-    <p className={`flex flex-wrap justify-center gap-x-2 gap-y-1 ${className}`}>
+    <p className={`know-focus-words ${className}`.trim()}>
       {words.map((word, i) => {
         const isActive = reduced || i === active;
         return (
           <span
             key={`${word}-${i}`}
+            className={`know-focus-word${isActive ? " is-active" : ""}`}
             style={{
-              filter: isActive || effectiveBlur === 0
-                ? "none"
-                : `blur(${effectiveBlur}px)`,
-              opacity: isActive ? 1 : softMode ? 0.55 : 0.7,
-              transform: isActive ? "scale(1.04)" : "scale(1)",
-              transition: `filter ${animationDuration}s ease, opacity ${animationDuration}s ease, transform ${animationDuration}s ease`,
+              transitionDuration: `${animationDuration}s`,
             }}
           >
             {word}
