@@ -7,6 +7,7 @@ import { SITE, type BirthdayNote } from "@/lib/config";
 import { track } from "@/lib/analytics";
 import { ConfettiBurst } from "./ConfettiBurst";
 import { ShareMoment } from "@/components/ShareMoment";
+import { GlassCard } from "@/components/ui/glass-card";
 
 export function NoteForm() {
   const [authorName, setAuthorName] = useState("");
@@ -59,7 +60,7 @@ export function NoteForm() {
 
   if (status === "done" && lastNote) {
     return (
-      <div className="panel success-panel">
+      <GlassCard className="success-panel">
         <ConfettiBurst fire={celebrate} />
         <p className="success-mark" aria-hidden>
           ✦
@@ -84,7 +85,7 @@ export function NoteForm() {
             Back to the birthday page
           </Link>
         </div>
-      </div>
+      </GlassCard>
     );
   }
 
@@ -150,58 +151,60 @@ function NoteFormFields({
   }, []);
 
   return (
-    <form ref={formRef} className="panel form-panel" onSubmit={onSubmit}>
-      <label className="field form-unit">
-        <span className="field-label-row">
-          <span>Your note</span>
-          <span className={`field-meta ${remaining < 80 ? "is-warn" : ""}`}>
-            {remaining}
+    <GlassCard className="form-panel">
+      <form ref={formRef} onSubmit={onSubmit}>
+        <label className="field form-unit">
+          <span className="field-label-row">
+            <span>Your note</span>
+            <span className={`field-meta ${remaining < 80 ? "is-warn" : ""}`}>
+              {remaining}
+            </span>
           </span>
-        </span>
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          rows={7}
-          maxLength={2000}
-          required
-          autoComplete="off"
-          enterKeyHint="done"
-          placeholder={`Dear ${SITE.name}…`}
-        />
-      </label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={7}
+            maxLength={2000}
+            required
+            autoComplete="off"
+            enterKeyHint="done"
+            placeholder={`Dear ${SITE.name}…`}
+          />
+        </label>
 
-      <label className="field form-unit">
-        <span className="field-label-row">
-          <span>
-            Your name <em>(optional)</em>
+        <label className="field form-unit">
+          <span className="field-label-row">
+            <span>
+              Your name <em>(optional)</em>
+            </span>
           </span>
-        </span>
-        <input
-          type="text"
-          value={authorName}
-          onChange={(e) => setAuthorName(e.target.value)}
-          maxLength={80}
-          autoComplete="nickname"
-          enterKeyHint="done"
-          placeholder="Anonymous is fine too"
-        />
-      </label>
+          <input
+            type="text"
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
+            maxLength={80}
+            autoComplete="nickname"
+            enterKeyHint="done"
+            placeholder="Anonymous is fine too"
+          />
+        </label>
 
-      {error ? (
-        <p className="form-error form-unit" role="alert">
-          {error}
-        </p>
-      ) : null}
+        {error ? (
+          <p className="form-error form-unit" role="alert">
+            {error}
+          </p>
+        ) : null}
 
-      <div className="form-actions form-unit">
-        <button
-          className="btn-primary btn-block"
-          type="submit"
-          disabled={status === "loading" || message.trim().length < 2}
-        >
-          {status === "loading" ? "Sending…" : "Send birthday note"}
-        </button>
-      </div>
-    </form>
+        <div className="form-actions form-unit">
+          <button
+            className="btn-primary btn-block"
+            type="submit"
+            disabled={status === "loading" || message.trim().length < 2}
+          >
+            {status === "loading" ? "Sending…" : "Send birthday note"}
+          </button>
+        </div>
+      </form>
+    </GlassCard>
   );
 }

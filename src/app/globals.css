@@ -99,12 +99,19 @@ a {
   overflow: hidden;
 }
 
+.birthday-backdrop,
 .arrival-backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   background: #ff8f6b;
+}
+
+.birthday-backdrop-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
 }
 
 .arrival-vignette {
@@ -244,11 +251,12 @@ a {
   min-height: 44px;
   max-width: calc(100vw - 2rem);
   padding: 0.65rem 0.95rem;
-  border: 1px solid var(--stroke);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
-  background: rgba(255, 248, 238, 0.9);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 12px 30px rgba(33, 24, 36, 0.12);
+  background: rgba(255, 253, 250, 0.55);
+  backdrop-filter: blur(14px) saturate(1.1);
+  -webkit-backdrop-filter: blur(14px) saturate(1.1);
+  box-shadow: 0 12px 30px rgba(33, 24, 36, 0.14);
   color: var(--ink);
   font: inherit;
   font-weight: 700;
@@ -590,7 +598,7 @@ a {
   line-height: 1.1;
 }
 
-/* Note + inbox stages */
+/* Note + inbox stages — transparent over BirthdayBackdrop */
 .stage {
   position: relative;
   isolation: isolate;
@@ -601,11 +609,11 @@ a {
     max(1rem, env(safe-area-inset-right))
     max(1.5rem, env(safe-area-inset-bottom))
     max(1rem, env(safe-area-inset-left));
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 93, 125, 0.16), transparent 55%),
-    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(184, 161, 255, 0.14), transparent 50%),
-    radial-gradient(ellipse 50% 35% at 0% 80%, rgba(255, 200, 87, 0.12), transparent 45%),
-    var(--ivory);
+  background: transparent;
+}
+
+.stage-backdrop {
+  z-index: 0;
 }
 
 .stage-glow {
@@ -614,7 +622,8 @@ a {
   pointer-events: none;
   z-index: 0;
   background:
-    linear-gradient(180deg, transparent 0%, rgba(255, 248, 238, 0.4) 100%);
+    radial-gradient(ellipse at center, transparent 40%, rgba(255, 248, 238, 0.22) 100%),
+    linear-gradient(180deg, transparent 55%, rgba(255, 248, 238, 0.35) 100%);
 }
 
 .stage-shell {
@@ -634,16 +643,21 @@ a {
   align-items: center;
   min-height: 44px;
   margin-bottom: 1.25rem;
-  padding: 0.35rem 0;
-  color: var(--muted);
+  padding: 0.35rem 0.7rem;
+  color: var(--ink);
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
+  border-radius: 999px;
+  background: rgba(255, 253, 250, 0.55);
+  border: 1px solid rgba(255, 93, 125, 0.22);
+  backdrop-filter: blur(10px);
   -webkit-tap-highlight-color: transparent;
 }
 
 .stage-back:hover {
   color: var(--ink);
+  background: rgba(255, 253, 250, 0.82);
 }
 
 .stage-header {
@@ -658,23 +672,30 @@ a {
   letter-spacing: -0.03em;
   line-height: 1.12;
   text-wrap: balance;
+  color: var(--ink);
+  text-shadow: 0 1px 0 rgba(255, 248, 238, 0.45);
 }
 
 .stage-lede {
   margin: 0.7rem auto 0;
   max-width: 28rem;
-  color: var(--muted);
+  color: rgba(33, 24, 36, 0.78);
   font-size: 0.98rem;
   line-height: 1.55;
   text-wrap: pretty;
 }
 
-.panel {
-  background: rgba(255, 253, 250, 0.92);
-  border: 1px solid var(--stroke);
+/* Glass panel — adapted from 21st.dev Glass Card (molecule-lab-rushil) */
+.panel,
+.glass-card {
+  background: rgba(255, 253, 250, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 1.35rem;
-  box-shadow: 0 18px 48px rgba(33, 24, 36, 0.1);
-  backdrop-filter: blur(12px);
+  box-shadow:
+    0 18px 48px rgba(33, 24, 36, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
 }
 
 .form-panel,
@@ -838,13 +859,14 @@ a {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid var(--stroke);
+  background: rgba(255, 253, 250, 0.55);
+  border: 1px solid rgba(255, 93, 125, 0.28);
   color: var(--ink);
+  backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: white;
+  background: rgba(255, 253, 250, 0.88);
 }
 
 .form-error {
@@ -1001,20 +1023,30 @@ a {
   place-items: center;
   padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
     max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
-  background: rgba(33, 24, 36, 0.36);
-  backdrop-filter: blur(8px);
+  background: rgba(33, 24, 36, 0.18);
+  backdrop-filter: blur(6px);
+}
+
+.modal-backdrop {
+  z-index: 0;
+  opacity: 0.92;
 }
 
 .modal-panel {
   position: relative;
+  z-index: 1;
   width: min(560px, 100%);
   max-height: min(90dvh, 900px);
   overflow: auto;
   padding: 1.25rem;
   border-radius: 1.6rem;
-  background: linear-gradient(180deg, #fffdfb, #fff5f8);
-  border: 1px solid var(--stroke);
-  box-shadow: 0 30px 80px rgba(33, 24, 36, 0.28);
+  background: rgba(255, 253, 250, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 30px 80px rgba(33, 24, 36, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px) saturate(1.15);
+  -webkit-backdrop-filter: blur(18px) saturate(1.15);
   -webkit-overflow-scrolling: touch;
 }
 

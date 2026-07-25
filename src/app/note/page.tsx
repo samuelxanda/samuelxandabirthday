@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { NoteForm } from "@/components/NoteForm";
+import { BirthdayBackdrop } from "@/components/ui/BirthdayBackdrop";
 import { SITE } from "@/lib/config";
 
 export default function NotePage() {
   return (
     <main className="stage note-stage">
+      <BirthdayBackdrop fixed className="stage-backdrop" />
       <div className="stage-glow" aria-hidden />
       <div className="stage-shell">
         <Link href="/" className="stage-back">

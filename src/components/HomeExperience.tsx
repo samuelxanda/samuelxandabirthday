@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ArrivalHero } from "@/components/acts/ArrivalHero";
 import { KnowSamuel } from "@/components/acts/KnowSamuel";
 import { ClosingMoment } from "@/components/ClosingMoment";
+import { BirthdayBackdrop } from "@/components/ui/BirthdayBackdrop";
 import { SITE } from "@/lib/config";
 import { track } from "@/lib/analytics";
 
@@ -133,9 +134,10 @@ export function HomeExperience() {
             if (event.target === event.currentTarget) closeModal();
           }}
         >
+          <BirthdayBackdrop fixed className="modal-backdrop" />
           <div
             ref={panelRef}
-            className="modal-panel modal-invite"
+            className="modal-panel modal-invite panel glass-card"
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
