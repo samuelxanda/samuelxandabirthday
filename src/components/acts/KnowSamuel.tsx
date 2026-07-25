@@ -21,8 +21,8 @@ const SLIDES: Slide[] = [
   })),
   {
     id: "closer",
-    kind: "Your turn",
-    text: `Now leave ${SITE.name} something only he will read.`,
+    kind: "Birthday wish",
+    text: `Now leave ${SITE.name} a private birthday wish — only he will read it.`,
     isCloser: true,
   },
 ];

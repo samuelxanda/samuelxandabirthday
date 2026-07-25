@@ -6,11 +6,14 @@ import { SITE } from "@/lib/config";
 
 export function LeaveMark() {
   return (
-    <section className="moment moment-mark" aria-label={`Leave ${SITE.name} a note`}>
+    <section
+      className="moment moment-mark"
+      aria-label={`Leave ${SITE.name} a birthday wish`}
+    >
       <FadeContent className="moment-inner">
-        <p className="moment-invite">Say something.</p>
+        <p className="moment-invite">Wish him a happy birthday.</p>
         <Link href="/note" className="btn-primary moment-cta">
-          Leave {SITE.name} a note
+          Leave a birthday wish
         </Link>
       </FadeContent>
     </section>

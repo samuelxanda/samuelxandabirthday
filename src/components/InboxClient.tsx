@@ -122,12 +122,12 @@ export function InboxClient() {
     <div className="inbox-shell">
       <header className="panel inbox-top">
         <div className="inbox-top-copy">
-          <p className="mono-label">Private</p>
+          <p className="mono-label">Private · birthday wishes</p>
           <h1 className="panel-title">Birthday inbox</h1>
           <p className="panel-copy">
             {notes.length === 0
-              ? "No notes yet — share your public link."
-              : `${notes.length} note${notes.length === 1 ? "" : "s"} so far`}
+              ? "No birthday wishes yet — share your public link."
+              : `${notes.length} birthday wish${notes.length === 1 ? "" : "es"} so far`}
           </p>
         </div>
         <button
@@ -142,9 +142,9 @@ export function InboxClient() {
       <div className="notes-list" aria-live="polite">
         {notes.length === 0 ? (
           <div className="panel empty-note">
-            <p className="empty-title">Waiting for the first note</p>
+            <p className="empty-title">Waiting for the first wish</p>
             <p className="panel-copy">
-              When friends leave one, it shows up here — only for you.
+              When friends leave a birthday note, it shows up here — only for you.
             </p>
           </div>
         ) : (

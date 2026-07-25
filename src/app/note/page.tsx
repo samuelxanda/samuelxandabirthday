@@ -14,11 +14,14 @@ export default function NotePage() {
         </Link>
 
         <header className="stage-header">
-          <p className="mono-label">Private · for {SITE.name}</p>
-          <h1 className="stage-title">Leave {SITE.name} a note</h1>
+          <p className="mono-label">
+            {SITE.name}&apos;s birthday · private wish
+          </p>
+          <h1 className="stage-title">Leave {SITE.name} a birthday wish</h1>
           <p className="stage-lede">
-            Only {SITE.name} can read what you write. Say what you want him to
-            know.
+            A private birthday note only {SITE.name} can read — say happy
+            birthday, share a memory, or write the wish you&apos;d say in
+            person.
           </p>
         </header>
 

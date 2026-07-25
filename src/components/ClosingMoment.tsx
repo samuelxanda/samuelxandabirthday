@@ -10,12 +10,12 @@ export function ClosingMoment() {
       <FadeContent>
         <p className="mono-label">Before you go</p>
         <h2 id="closing-heading" className="section-title">
-          Thanks for being in the room
+          Thanks for celebrating {SITE.name}
         </h2>
         <p className="section-sub closing-sub">
-          Share this page with someone who knows {SITE.name}, or come back
-          later. When you&apos;re ready to leave a private note, use the pin in
-          the top right.
+          Share this birthday page with someone who knows him — or leave a
+          private birthday wish with the button in the top right. Only{" "}
+          {SITE.name} can read what you write.
         </p>
       </FadeContent>
 

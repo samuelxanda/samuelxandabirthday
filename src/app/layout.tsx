@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   title: `${SITE.name}'s Birthday`,
   description: SITE.subhead,
   openGraph: {
-    title: `${SITE.headline} — ${SITE.name}'s birthday`,
+    title: `${SITE.name}'s Birthday — leave a private wish`,
     description: SITE.subhead,
     type: "website",
   },

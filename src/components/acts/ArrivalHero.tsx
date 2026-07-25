@@ -24,7 +24,7 @@ export function ArrivalHero() {
               animationSpeed={5}
               colors={["#211824", "#8B1E3F", "#3D2A6B", "#211824"]}
             >
-              stay a minute · leave a mark
+              happy birthday · leave a wish
             </GradientText>
           </p>
         </div>
@@ -34,7 +34,9 @@ export function ArrivalHero() {
         </FadeContent>
 
         <FadeContent direction="up" delay={0.55} trigger="mount">
-          <p className="scroll-hint">Scroll — explore, leave a note, enjoy the day</p>
+          <p className="scroll-hint">
+            Scroll — get to know him, then leave a birthday wish
+          </p>
         </FadeContent>
       </div>
     </section>

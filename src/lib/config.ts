@@ -1,15 +1,15 @@
 export const SITE = {
   name: "Samuel",
   /** Speaks to the visitor first */
-  headline: "Glad you're here",
+  headline: "It's Samuel's birthday",
   subhead:
-    "Pull up a seat. Leave Samuel a private note — only he will read it.",
-  thankYouTitle: "Thank you",
+    "You're invited to leave him a private birthday wish — a note only he will read.",
+  thankYouTitle: "Wish received",
   thankYou:
-    "That means more than you know. Your note is private — only Samuel can read it. Come back if you want to leave another, or share this page with someone who knows him.",
+    "Thank you — that means more than you know. Your birthday wish is private; only Samuel can read it. Come back to leave another, or share this page with someone who knows him.",
   year: new Date().getFullYear(),
   shareText:
-    "I just left Samuel a birthday note — come say something too:",
+    "I just left Samuel a birthday wish — come wish him a happy birthday too:",
 } as const;
 
 /** Design tokens — warm, confident, celebratory */

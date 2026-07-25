@@ -79,7 +79,7 @@ export function NoteForm() {
               setStatus("idle");
             }}
           >
-            Leave another note
+            Leave another wish
           </button>
           <Link href="/" className="btn-primary btn-block">
             Back to the birthday page
@@ -155,7 +155,7 @@ function NoteFormFields({
       <form ref={formRef} onSubmit={onSubmit}>
         <label className="field form-unit">
           <span className="field-label-row">
-            <span>Your note</span>
+            <span>Your birthday wish</span>
             <span className={`field-meta ${remaining < 80 ? "is-warn" : ""}`}>
               {remaining}
             </span>
@@ -168,7 +168,7 @@ function NoteFormFields({
             required
             autoComplete="off"
             enterKeyHint="done"
-            placeholder={`Dear ${SITE.name}…`}
+            placeholder={`Happy birthday, ${SITE.name}…`}
           />
         </label>
 
@@ -201,7 +201,7 @@ function NoteFormFields({
             type="submit"
             disabled={status === "loading" || message.trim().length < 2}
           >
-            {status === "loading" ? "Sending…" : "Send birthday note"}
+            {status === "loading" ? "Sending…" : "Send birthday wish"}
           </button>
         </div>
       </form>
