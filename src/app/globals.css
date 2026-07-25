@@ -103,22 +103,24 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
+  background: #ff8f6b;
 }
 
 .arrival-vignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 30%, rgba(255, 248, 238, 0.62) 100%),
-    linear-gradient(180deg, transparent 65%, var(--ivory));
+    radial-gradient(ellipse at center, transparent 45%, rgba(255, 248, 238, 0.28) 100%),
+    linear-gradient(180deg, transparent 72%, var(--ivory));
   pointer-events: none;
 }
 
 @media (max-width: 768px) {
   .arrival-vignette {
     background:
-      radial-gradient(ellipse at center, rgba(255, 248, 238, 0.28) 20%, rgba(255, 248, 238, 0.72) 100%),
-      linear-gradient(180deg, transparent 55%, var(--ivory));
+      radial-gradient(ellipse at center, transparent 35%, rgba(255, 248, 238, 0.38) 100%),
+      linear-gradient(180deg, transparent 60%, var(--ivory));
   }
 }
 

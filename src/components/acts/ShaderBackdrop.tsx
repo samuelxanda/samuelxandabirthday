@@ -3,14 +3,18 @@
 import { useEffect, useState } from "react";
 import { GradientBackground } from "@/components/ui/noisy-gradient-backgrounds";
 
-/** Warm celebratory wash — coral → marigold → lilac → ivory */
+/**
+ * Vivid coral → marigold → lilac wash.
+ * Keep saturated stops through the viewport — fading to ivory made this
+ * look like a flat page background under the old vignette.
+ */
 const BIRTHDAY_COLORS = [
-  { color: "rgba(255,93,125,1)", stop: "8%" },
-  { color: "rgba(255,140,120,1)", stop: "22%" },
+  { color: "rgba(255,93,125,1)", stop: "0%" },
+  { color: "rgba(255,120,100,1)", stop: "18%" },
   { color: "rgba(255,200,87,1)", stop: "42%" },
-  { color: "rgba(238,190,210,1)", stop: "62%" },
-  { color: "rgba(184,161,255,0.95)", stop: "82%" },
-  { color: "rgba(255,248,238,1)", stop: "100%" },
+  { color: "rgba(238,174,202,1)", stop: "68%" },
+  { color: "rgba(184,161,255,1)", stop: "88%" },
+  { color: "rgba(148,201,233,1)", stop: "100%" },
 ];
 
 export function ShaderBackdrop() {
@@ -37,12 +41,12 @@ export function ShaderBackdrop() {
     <div className="arrival-backdrop" aria-hidden>
       <GradientBackground
         gradientOrigin="bottom-middle"
-        gradientSize="130% 130%"
+        gradientSize="140% 140%"
         colors={BIRTHDAY_COLORS}
         enableNoise={!reduceMotion}
-        noiseIntensity={mobile ? 0.7 : 1}
-        noisePatternSize={mobile ? 110 : 90}
-        noisePatternAlpha={mobile ? 28 : 40}
+        noiseIntensity={mobile ? 0.85 : 1.1}
+        noisePatternSize={mobile ? 100 : 85}
+        noisePatternAlpha={mobile ? 36 : 48}
         noisePatternRefreshInterval={reduceMotion ? 0 : mobile ? 3 : 2}
       />
       <div className="arrival-vignette" />
