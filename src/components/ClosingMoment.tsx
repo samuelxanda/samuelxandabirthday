@@ -14,8 +14,9 @@ export function ClosingMoment() {
         </h2>
         <p className="section-sub closing-sub">
           Share this birthday page with someone who knows him — or leave a
-          private birthday wish with the button in the top right. Only{" "}
-          {SITE.name} can read what you write.
+          private note with the button in the top right: a wish, honest advice,
+          something he could change, or a truth you wish he knew. Only{" "}
+          {SITE.name} can read it.
         </p>
       </FadeContent>
 

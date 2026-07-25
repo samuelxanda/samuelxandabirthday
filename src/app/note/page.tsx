@@ -15,13 +15,12 @@ export default function NotePage() {
 
         <header className="stage-header">
           <p className="mono-label">
-            {SITE.name}&apos;s birthday · private wish
+            {SITE.name}&apos;s birthday · private note
           </p>
-          <h1 className="stage-title">Leave {SITE.name} a birthday wish</h1>
+          <h1 className="stage-title">Leave {SITE.name} a private note</h1>
           <p className="stage-lede">
-            A private birthday note only {SITE.name} can read — say happy
-            birthday, share a memory, or write the wish you&apos;d say in
-            person.
+            A birthday wish, honest advice, something he could change, or a
+            truth you wish he knew — only {SITE.name} can read it.
           </p>
         </header>
 

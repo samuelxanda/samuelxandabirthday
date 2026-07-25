@@ -116,7 +116,7 @@ export function HomeExperience() {
           aria-expanded={open}
         >
           <span className="note-pin-dot" aria-hidden />
-          Wish {SITE.name} a happy birthday
+          Leave {SITE.name} a private note
         </button>
       ) : null}
 
@@ -153,14 +153,14 @@ export function HomeExperience() {
               ×
             </button>
             <div className="modal-intro">
-              <p className="mono-label">Birthday wish · private</p>
-              <h2 id={titleId}>Wish {SITE.name} a happy birthday</h2>
+              <p className="mono-label">Private note · for {SITE.name}</p>
+              <h2 id={titleId}>Leave {SITE.name} a private note</h2>
               <p className="lede modal-lede">
-                Write a birthday note or wish only he will see — encouragement,
-                a memory, or a simple happy birthday.
+                A birthday wish, honest advice, something he could change, or a
+                truth you wish he knew — only he will read it.
               </p>
               <Link href="/note" className="btn-primary modal-cta">
-                Leave a birthday wish
+                Write a private note
               </Link>
             </div>
           </div>

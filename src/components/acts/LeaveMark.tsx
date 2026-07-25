@@ -8,12 +8,12 @@ export function LeaveMark() {
   return (
     <section
       className="moment moment-mark"
-      aria-label={`Leave ${SITE.name} a birthday wish`}
+      aria-label={`Leave ${SITE.name} a private note`}
     >
       <FadeContent className="moment-inner">
-        <p className="moment-invite">Wish him a happy birthday.</p>
+        <p className="moment-invite">Tell him something private.</p>
         <Link href="/note" className="btn-primary moment-cta">
-          Leave a birthday wish
+          Leave a private note
         </Link>
       </FadeContent>
     </section>

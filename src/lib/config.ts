@@ -3,13 +3,13 @@ export const SITE = {
   /** Speaks to the visitor first */
   headline: "It's Samuel's birthday",
   subhead:
-    "You're invited to leave him a private birthday wish — a note only he will read.",
-  thankYouTitle: "Wish received",
+    "Leave him a private note — a birthday wish, honest advice, something he could change, or a truth you wish he knew. Only he will read it.",
+  thankYouTitle: "Note received",
   thankYou:
-    "Thank you — that means more than you know. Your birthday wish is private; only Samuel can read it. Come back to leave another, or share this page with someone who knows him.",
+    "Thank you — that means more than you know. Your note is private; only Samuel can read it. Come back to leave another, or share this page with someone who knows him.",
   year: new Date().getFullYear(),
   shareText:
-    "I just left Samuel a birthday wish — come wish him a happy birthday too:",
+    "I just left Samuel a private birthday note — come say something too:",
 } as const;
 
 /** Design tokens — warm, confident, celebratory */
