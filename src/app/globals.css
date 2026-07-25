@@ -360,11 +360,23 @@ a {
 .act-know {
   width: 100%;
   text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.know-pin {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
   overflow: hidden;
-  padding-block: 4.5rem;
 }
 
 .know-backdrop {
+  position: absolute !important;
+  inset: 0;
   z-index: 0;
   background: var(--ivory);
 }
@@ -383,42 +395,53 @@ a {
     radial-gradient(ellipse 45% 30% at 10% 70%, rgba(255, 200, 87, 0.1), transparent 50%);
 }
 
-.act-know-inner {
+.know-pin-inner {
   position: relative;
   z-index: 1;
-  width: min(720px, calc(100% - 1.5rem));
-  margin: 0 auto;
-}
-
-@media (max-width: 640px) {
-  .act-know {
-    padding-block: 3rem;
-  }
-
-  .act-know-inner {
-    width: min(720px, calc(100% - 1.25rem));
-  }
-}
-
-.story-groups {
-  margin-top: 2.75rem;
+  width: min(640px, calc(100% - 1.75rem));
+  padding:
+    max(1.5rem, env(safe-area-inset-top))
+    0
+    max(1.5rem, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
-  gap: 2.75rem;
+  align-items: stretch;
+  gap: 1.5rem;
 }
 
-.story-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
+.know-header .section-sub {
+  max-width: 34rem;
+  margin-inline: auto;
 }
 
-.story-beat-reveal {
+.know-stage {
+  position: relative;
   width: 100%;
-  min-height: 18vh;
+  min-height: clamp(11rem, 34vh, 16rem);
+}
+
+.know-slide {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.act-know.is-static .know-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-height: 0;
+}
+
+.act-know.is-static .know-slide {
+  position: relative;
+  inset: auto;
+  pointer-events: auto;
 }
 
 .story-beat-kind {
@@ -434,9 +457,9 @@ a {
 
 .story-beat-card {
   width: 100%;
-  padding: 1.25rem 1.35rem;
+  padding: 1.35rem 1.4rem;
   text-align: left;
-  background: rgba(255, 253, 250, 0.9);
+  background: rgba(255, 253, 250, 0.92);
   border: 1px solid rgba(255, 93, 125, 0.16);
   border-radius: 1.25rem;
   box-shadow: 0 14px 36px rgba(33, 24, 36, 0.08);
@@ -444,10 +467,20 @@ a {
   -webkit-backdrop-filter: blur(10px);
 }
 
+.know-slide.is-closer .story-beat-card {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 93, 125, 0.12),
+    rgba(184, 161, 255, 0.14)
+  );
+  border-color: rgba(255, 93, 125, 0.28);
+}
+
 .story-beat-text {
   margin: 0;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.15rem, 3.6vw, 1.6rem);
+  font-size: clamp(1.2rem, 3.8vw, 1.7rem);
   letter-spacing: -0.02em;
   line-height: 1.45;
   text-wrap: pretty;
@@ -456,58 +489,44 @@ a {
   filter: none;
 }
 
+.know-progress {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.know-progress-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(33, 24, 36, 0.16);
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.know-progress-dot.is-active {
+  background: var(--coral);
+  transform: scale(1.25);
+}
+
 @media (max-width: 640px) {
-  .story-groups {
-    margin-top: 2rem;
-    gap: 2rem;
+  .know-pin-inner {
+    width: min(640px, calc(100% - 1.25rem));
+    gap: 1.15rem;
   }
 
-  .story-group {
-    gap: 1.35rem;
-  }
-
-  .story-beat-reveal {
-    min-height: 16vh;
+  .know-stage {
+    min-height: clamp(10rem, 38vh, 15rem);
   }
 
   .story-beat-card {
-    padding: 1.05rem 1.1rem;
+    padding: 1.1rem 1.15rem;
   }
 
   .story-beat-text {
-    font-size: clamp(1.08rem, 4.6vw, 1.35rem);
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
     line-height: 1.5;
-  }
-}
-
-.know-focus-wrap {
-  margin-top: 3rem;
-  padding: 2rem 0.25rem 0.5rem;
-  min-height: 14vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.know-closer {
-  margin: 0;
-  color: var(--ink);
-  font-weight: 600;
-  font-size: 1.02rem;
-  padding: 0.75rem 1.1rem;
-  display: inline-block;
-  border-radius: 999px;
-  background: rgba(255, 248, 238, 0.92);
-  border: 1px solid rgba(255, 93, 125, 0.2);
-}
-
-@media (max-width: 640px) {
-  .know-focus-wrap {
-    margin-top: 2rem;
-  }
-
-  .know-closer {
-    font-size: 0.95rem;
   }
 }
 
