@@ -364,13 +364,9 @@ a {
   margin: 0;
 }
 
-.know-pin {
+.know-shell {
   position: relative;
   width: 100%;
-  min-height: 100dvh;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
   overflow: hidden;
 }
 
@@ -395,18 +391,19 @@ a {
     radial-gradient(ellipse 45% 30% at 10% 70%, rgba(255, 200, 87, 0.1), transparent 50%);
 }
 
-.know-pin-inner {
+.know-inner {
   position: relative;
   z-index: 1;
   width: min(820px, calc(100% - 1.75rem));
+  margin-inline: auto;
   padding:
-    max(1.5rem, env(safe-area-inset-top))
+    clamp(2.5rem, 8vh, 4.5rem)
     0
-    max(1.5rem, env(safe-area-inset-bottom));
+    clamp(2.75rem, 9vh, 5rem);
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .know-header .section-sub {
@@ -415,33 +412,16 @@ a {
 }
 
 .know-stage {
-  position: relative;
-  width: 100%;
-  min-height: clamp(16rem, 46vh, 24rem);
-}
-
-.know-slide {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.act-know.is-static .know-stage {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  min-height: 0;
+  width: 100%;
 }
 
-.act-know.is-static .know-slide {
-  position: relative;
-  inset: auto;
-  pointer-events: auto;
+.know-slide {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .story-beat-kind {
@@ -457,8 +437,8 @@ a {
 
 .story-beat-card {
   width: 100%;
-  min-height: clamp(12rem, 32vh, 18rem);
-  padding: 2.1rem 2.25rem;
+  min-height: 0;
+  padding: 1.65rem 1.85rem;
   display: flex;
   align-items: center;
   text-align: left;
@@ -484,7 +464,7 @@ a {
   margin: 0;
   width: 100%;
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(1.45rem, 4.4vw, 2.15rem);
+  font-size: clamp(1.3rem, 3.6vw, 1.85rem);
   letter-spacing: -0.02em;
   line-height: 1.4;
   text-wrap: pretty;
@@ -493,45 +473,19 @@ a {
   filter: none;
 }
 
-.know-progress {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.25rem;
-}
-
-.know-progress-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: rgba(33, 24, 36, 0.16);
-  transition: background 200ms ease, transform 200ms ease;
-}
-
-.know-progress-dot.is-active {
-  background: var(--coral);
-  transform: scale(1.25);
-}
-
 @media (max-width: 640px) {
-  .know-pin-inner {
+  .know-inner {
     width: min(820px, calc(100% - 1.25rem));
-    gap: 1.15rem;
-  }
-
-  .know-stage {
-    min-height: clamp(14rem, 48vh, 20rem);
+    gap: 1.35rem;
   }
 
   .story-beat-card {
-    min-height: clamp(11rem, 36vh, 16rem);
-    padding: 1.5rem 1.35rem;
+    padding: 1.35rem 1.25rem;
     border-radius: 1.35rem;
   }
 
   .story-beat-text {
-    font-size: clamp(1.25rem, 5.6vw, 1.65rem);
+    font-size: clamp(1.2rem, 5.2vw, 1.5rem);
     line-height: 1.45;
   }
 }
