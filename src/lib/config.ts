@@ -95,12 +95,4 @@ export const STORY_BEATS = [
     kind: "Getting better",
     text: "Quietly competitive with yesterday's version of himself — nobody else.",
   },
-  {
-    id: "attention",
-    kind: "Why you're here",
-    text: "Believes the best gift is attention — that's why you're here.",
-  },
 ] as const;
-
-export const STORY_FOCUS =
-  "curious builder kind friend late-night thinker" as const;

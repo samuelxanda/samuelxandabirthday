@@ -13,6 +13,15 @@ export const BIRTHDAY_COLORS = [
   { color: "rgba(148,201,233,1)", stop: "100%" },
 ] as const;
 
+/** Muted wash for story sections — same family, lower saturation for reading. */
+export const BIRTHDAY_SOFT_COLORS = [
+  { color: "rgba(255,248,238,1)", stop: "0%" },
+  { color: "rgba(255,200,210,0.55)", stop: "28%" },
+  { color: "rgba(255,224,170,0.45)", stop: "52%" },
+  { color: "rgba(220,210,245,0.5)", stop: "78%" },
+  { color: "rgba(255,248,238,1)", stop: "100%" },
+] as const;
+
 type BirthdayBackdropProps = {
   /** Extra class on the outer wrapper (e.g. arrival-backdrop, stage-backdrop). */
   className?: string;
@@ -20,15 +29,19 @@ type BirthdayBackdropProps = {
   showVignette?: boolean;
   /** Fixed full-viewport layer for stages/modal. */
   fixed?: boolean;
+  /** `vivid` = hero/stages; `soft` = quiet story wash. */
+  variant?: "vivid" | "soft";
 };
 
 export function BirthdayBackdrop({
   className = "",
   showVignette = false,
   fixed = false,
+  variant = "vivid",
 }: BirthdayBackdropProps) {
   const [mobile, setMobile] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const soft = variant === "soft";
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 768px)");
@@ -48,20 +61,21 @@ export function BirthdayBackdrop({
 
   return (
     <div
-      className={`birthday-backdrop ${fixed ? "birthday-backdrop-fixed" : ""} ${className}`.trim()}
+      className={`birthday-backdrop ${fixed ? "birthday-backdrop-fixed" : ""} ${soft ? "birthday-backdrop-soft" : ""} ${className}`.trim()}
       aria-hidden
     >
       <GradientBackground
-        gradientOrigin="bottom-middle"
-        gradientSize="140% 140%"
-        colors={[...BIRTHDAY_COLORS]}
-        enableNoise={!reduceMotion}
+        gradientOrigin={soft ? "top-middle" : "bottom-middle"}
+        gradientSize={soft ? "160% 120%" : "140% 140%"}
+        colors={[...(soft ? BIRTHDAY_SOFT_COLORS : BIRTHDAY_COLORS)]}
+        enableNoise={!reduceMotion && !soft}
         noiseIntensity={mobile ? 0.85 : 1.1}
         noisePatternSize={mobile ? 100 : 85}
         noisePatternAlpha={mobile ? 36 : 48}
         noisePatternRefreshInterval={reduceMotion ? 0 : mobile ? 3 : 2}
       />
       {showVignette ? <div className="arrival-vignette" /> : null}
+      {soft ? <div className="know-soft-glow" /> : null}
     </div>
   );
 }
