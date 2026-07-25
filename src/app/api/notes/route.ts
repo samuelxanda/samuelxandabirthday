@@ -5,11 +5,11 @@ import { getPostHogServer } from "@/lib/posthog-server";
 
 /** Private notes — only Samuel's unlocked inbox can read them. */
 export async function GET() {
-  if (!(await isInboxAuthenticated())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
+    if (!(await isInboxAuthenticated())) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const notes = await listNotes();
     return NextResponse.json({ notes });
   } catch (error) {

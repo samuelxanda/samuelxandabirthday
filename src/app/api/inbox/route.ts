@@ -18,8 +18,16 @@ export async function POST(request: Request) {
       ? (body as { passcode?: unknown }).passcode
       : undefined;
 
-  if (typeof passcode !== "string" || !verifyPasscode(passcode)) {
+  if (typeof passcode !== "string") {
     return NextResponse.json({ error: "Wrong passphrase" }, { status: 401 });
+  }
+
+  try {
+    if (!verifyPasscode(passcode)) {
+      return NextResponse.json({ error: "Wrong passphrase" }, { status: 401 });
+    }
+  } catch {
+    return NextResponse.json({ error: "Inbox unavailable" }, { status: 503 });
   }
 
   const response = NextResponse.json({ ok: true });

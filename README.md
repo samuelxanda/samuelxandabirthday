@@ -14,7 +14,7 @@ Only **you** can read them at `/inbox` with a passphrase.
 ```bash
 npm install
 cp .env.example .env.local   # if you don't already have one
-# edit ADMIN_PASSCODE in .env.local
+# set a strong ADMIN_PASSCODE in .env.local (never commit it)
 npm run dev
 ```
 
@@ -22,7 +22,7 @@ Open:
 - Public page: [http://localhost:3000](http://localhost:3000)
 - Private inbox: [http://localhost:3000/inbox](http://localhost:3000/inbox)
 
-Default local passphrase (change it!): `samuel-bday`
+Keep `ADMIN_PASSCODE` only in `.env.local` / Vercel env — never in source or the public URL.
 
 ## Personalize
 
