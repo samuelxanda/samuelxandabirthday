@@ -22,12 +22,19 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://samuelxandabirthday.vercel.app"),
   title: `${SITE.name}'s Birthday`,
   description: SITE.subhead,
   openGraph: {
     title: `${SITE.name}'s Birthday — leave a private note`,
     description: SITE.subhead,
     type: "website",
+    siteName: `${SITE.name}'s Birthday`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name}'s Birthday — leave a private note`,
+    description: SITE.subhead,
   },
 };
 
